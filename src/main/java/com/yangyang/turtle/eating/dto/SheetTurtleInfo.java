@@ -9,6 +9,14 @@ public class SheetTurtleInfo {
 
     private List<String> barcodeList;
 
+    public SheetTurtleInfo() {
+    }
+
+    public SheetTurtleInfo(Date eatingDate, List<String> barcodeList) {
+        this.eatingDate = eatingDate;
+        this.barcodeList = barcodeList;
+    }
+
     public Date getEatingDate() {
         return eatingDate;
     }
