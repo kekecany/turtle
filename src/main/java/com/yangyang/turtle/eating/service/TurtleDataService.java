@@ -1,10 +1,10 @@
-package com.yangyang.turtle.eating.dao;
+package com.yangyang.turtle.eating.service;
 
 import com.yangyang.turtle.eating.dto.TurtleEatingInfo;
 
 import java.util.List;
 
-public interface TurtleDao {
+public interface TurtleDataService {
 
     void batchInsertEatingInfo(List<TurtleEatingInfo> turtleEatingInfoList);
 

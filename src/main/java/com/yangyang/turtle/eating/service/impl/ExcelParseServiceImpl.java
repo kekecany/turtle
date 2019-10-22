@@ -51,9 +51,7 @@ public class ExcelParseServiceImpl implements ExcelParseService {
         System.out.println(sheet.getSheetName());
         List<String> allBarCodes = new ArrayList<>();
         for (Row row : sheet) {
-            System.out.println("rowNum: " + row.getRowNum());
             for (Cell cell : row) {
-                System.out.println(cell);
                 allBarCodes.add(cell.getStringCellValue());
             }
         }
