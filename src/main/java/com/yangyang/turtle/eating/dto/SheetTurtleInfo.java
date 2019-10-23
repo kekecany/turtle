@@ -1,35 +1,34 @@
 package com.yangyang.turtle.eating.dto;
 
 import java.util.Date;
-import java.util.List;
 
 public class SheetTurtleInfo {
 
-    private Date eatingDate;
+    private Date eatDate;
 
-    private List<String> barcodeList;
+    private String barCode;
 
     public SheetTurtleInfo() {
     }
 
-    public SheetTurtleInfo(Date eatingDate, List<String> barcodeList) {
-        this.eatingDate = eatingDate;
-        this.barcodeList = barcodeList;
+    public SheetTurtleInfo(Date eatingDate, String barCodes) {
+        this.eatDate = eatingDate;
+        this.barCode = barCodes;
     }
 
-    public Date getEatingDate() {
-        return eatingDate;
+    public Date getEatDate() {
+        return eatDate;
     }
 
-    public void setEatingDate(Date eatingDate) {
-        this.eatingDate = eatingDate;
+    public void setEatDate(Date eatDate) {
+        this.eatDate = eatDate;
     }
 
-    public List<String> getBarcodeList() {
-        return barcodeList;
+    public String getBarCode() {
+        return barCode;
     }
 
-    public void setBarcodeList(List<String> barcodeList) {
-        this.barcodeList = barcodeList;
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
     }
 }

@@ -1,6 +1,6 @@
 package com.yangyang.turtle.eating.service.impl;
 
-import com.yangyang.turtle.eating.dto.TurtleEatingInfo;
+import com.yangyang.turtle.eating.dto.SheetTurtleInfo;
 import com.yangyang.turtle.eating.mapper.TurtleMapper;
 import com.yangyang.turtle.eating.service.TurtleDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,10 @@ public class TurtleDataServiceImpl implements TurtleDataService {
     @Autowired
     private TurtleMapper turtleMapper;
 
-    @Override
-    public void batchInsertEatingInfo(List<TurtleEatingInfo> turtleEatingInfoList) {
 
+    @Override
+    public void batchInsertEatingInfo(List<SheetTurtleInfo> list) {
+        turtleMapper.batchInsertEatingInfo(list);
     }
 
     @Override

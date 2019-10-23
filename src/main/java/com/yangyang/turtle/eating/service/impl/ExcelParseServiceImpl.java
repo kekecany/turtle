@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -25,19 +26,14 @@ public class ExcelParseServiceImpl implements ExcelParseService {
         List<SheetTurtleInfo> lists = new ArrayList<>(sheetsNum - 1);
         for (int i = 1; i < sheetsNum; i++) {
             Sheet sheet = wb.getSheetAt(i);
-            List<String> barCodes = new ArrayList<>();
+            String sheetName = sheet.getSheetName();
+            Date eatDate = eatDate(sheetName);
             for (Row row : sheet) {
-                System.out.println("rowNum: " + row.getRowNum());
                 for (Cell cell : row) {
-                    System.out.println(cell);
-                    barCodes.add(cell.getStringCellValue());
+                    SheetTurtleInfo sheetTurtleInfo = new SheetTurtleInfo(eatDate, cell.getStringCellValue());
+                    lists.add(sheetTurtleInfo);
                 }
             }
-            String sheetName = sheet.getSheetName();
-            Date eatDate = DateUtils.parseDate(sheetName.substring(0, sheetName.length() - 1),
-                    DateConstant.DATE_PATTENS);
-            SheetTurtleInfo sheetTurtleInfo = new SheetTurtleInfo(eatDate, barCodes);
-            lists.add(sheetTurtleInfo);
         }
         return lists;
     }
@@ -52,10 +48,20 @@ public class ExcelParseServiceImpl implements ExcelParseService {
         List<String> allBarCodes = new ArrayList<>();
         for (Row row : sheet) {
             for (Cell cell : row) {
-                allBarCodes.add(cell.getStringCellValue());
+                allBarCodes.add(cell.getStringCellValue().trim());
             }
         }
         return allBarCodes;
+    }
+
+    private Date eatDate(String sheetName) throws ParseException {
+        Date date = DateUtils.parseDate(sheetName.substring(0, sheetName.length() - 1),
+                DateConstant.DATE_PATTENS);
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        calendar.setTime(date);
+        calendar.set(Calendar.YEAR, year);
+        return calendar.getTime();
     }
 
 }
